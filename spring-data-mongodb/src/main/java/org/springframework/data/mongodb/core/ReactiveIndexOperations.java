@@ -15,13 +15,11 @@
  */
 package org.springframework.data.mongodb.core;
 
-import java.util.List;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 import org.springframework.data.mongodb.core.index.IndexDefinition;
 import org.springframework.data.mongodb.core.index.IndexInfo;
-
-import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
 
 /**
  * Index operations on a collection.
