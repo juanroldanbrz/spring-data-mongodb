@@ -308,7 +308,8 @@ public class ReactiveMongoTemplate implements ReactiveMongoOperations, Applicati
 	 * @see org.springframework.data.mongodb.core.ReactiveMongoOperations#reactiveIndexOps(java.lang.Class)
 	 */
 	public ReactiveIndexOperations indexOps(Class<?> entityClass) {
-		return new DefaultReactiveIndexOperations(this, determineCollectionName(entityClass), this.queryMapper);
+		return new DefaultReactiveIndexOperations(this, determineCollectionName(entityClass), this.queryMapper,
+				entityClass);
 	}
 
 	public String getCollectionName(Class<?> entityClass) {
@@ -1914,8 +1915,7 @@ public class ReactiveMongoTemplate implements ReactiveMongoOperations, Applicati
 					"No class parameter provided, entity collection can't be determined!");
 		}
 
-		MongoPersistentEntity<?> entity = mappingContext.getRequiredPersistentEntity(entityClass);
-		return entity.getCollection();
+		return mappingContext.getRequiredPersistentEntity(entityClass).getCollection();
 	}
 
 	private static MappingMongoConverter getDefaultMongoConverter() {
